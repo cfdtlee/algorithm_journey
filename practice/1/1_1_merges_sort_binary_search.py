@@ -8,6 +8,12 @@ def merge_sort(A, p, r):
         merge_sort(A, q+1, r)
         merge(A, p, q, r) #1_error
 
+def exchange(A, i, j):
+    """exchange"""
+    temp = A[j]
+    A[j] = A[i]
+    A[i] = temp
+
 def merge(A, p, q, r):
     """merge two divided part"""
     print('p='+str(p)+'q='+str(q)+'r='+str(r))
