@@ -16,7 +16,7 @@ void print_m_s();
 int m[20][20], s[20][20];
 int main(int argc, const char * argv[])
 {
-    
+
     int chain[20];
     int n;
     cin >> n;
@@ -25,8 +25,8 @@ int main(int argc, const char * argv[])
         cin >> chain[i];
     }
     matrix_chain(chain, n);
-    print_m_s();
-    //print_optimal(1, n);
+    //print_m_s();
+    print_optimal(1, n-1);
     return 0;
 }
 
@@ -35,11 +35,12 @@ void matrix_chain(int chain[], int n)
     int i, l, j, k, q;
     
     for (l = 2; l < n; ++l) {  //length of chain
-        for (i = 1; i <= n-l+1; ++i) {  //
-            j = i+l-1;
-            m[i][j] = 999;
-            for (k = i; k < j; ++k) {
+        for (i = 1; i < n-l+1; ++i) {  //i是chain起始位置，边界i<n－l+1
+            j = i+l-1;                  //j是chain的最后一位
+            m[i][j] = 999999999;              //999 is too small
+            for (k = i; k < j; ++k) {  //从k处分开
                 q = m[i][k] + m[k+1][j] + chain[i-1]*chain[k]*chain[j];
+                //cout << "q=" << q << endl;
                 if (q < m[i][j]) {
                     m[i][j] = q;
                     s[i][j] = k;
